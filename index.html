@@ -1,0 +1,43 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Cat Clicker</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <header>
+      <h1>Cat Lists</h1>
+      <!-- <form id="add-cat-form" class="add-cat-form"> -->
+          <input id="add-cat-content" class="add-cat-content">
+          <button class="add-cat">Add Cat</button>
+      <!-- </form> -->
+  </header>
+  <main>
+      <article>
+          <section id="section_left">              
+          </section> 
+          <section id="section_right">
+            <aside>
+                <ul id="cat_lists">                                                                        
+                </ul>
+          </aside>
+        </section>  
+      </article>
+  </main>
+  <footer><p>Copyright 2009 Tang Sing Lun</p></footer>
+
+  <script type="text/template" data-template="cat">
+      <figure id="fig-{{id}}">
+          <figcaption id="upCap-{{id}}">
+            {{cat_name}}            
+            <img src="{{cat_img}}" class="img-{{id}}">
+          </figcaption>
+      </figure>
+      <span id="span-{{id}}">The cat click {{counter}} times</span>      
+</script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
