@@ -1,5 +1,4 @@
-$(function() {
-
+$(function() {        
     var dataCat = (function DataCat() {
         this.id= 0,
         this.counter= 0,
@@ -11,12 +10,12 @@ $(function() {
     var currentPosition = 0;
 
     var octopus = {
-        addCat: function(cat_name) {
+        addCat: function(cat_name, cat_img, cat_clicks) {
             var obj = new dataCat();            
             var thisID = dataCatObjArray.length;
             obj.id = thisID;
-            obj.counter = 0;
-            obj.cats = 'img/cat' + thisID + '.jpg';
+            obj.counter = parseInt(cat_clicks);
+            obj.cats = cat_img;
             obj.cats_name = cat_name;         
             dataCatObjArray.push(obj);
             catListView.render();           
@@ -53,25 +52,16 @@ $(function() {
             currentPosition = 0;
             catListView.init();
             catView.init();
+            adminView.init();
         }
     };
 
 
     var catListView = {
         init: function() {           
-            var addCatBtn = $('.add-cat');
-            var addCatContent = $('#add-cat-content');
-            addCatBtn.click(function() {
-                octopus.addCat(addCatContent.val());
-                return false;
-            });
-
             // grab elements and html for using in the render function
             this.$catLists = $('#cat_lists');
-
-            this.render();
-
-            
+            this.render();  
         },
 
         render: function(){
@@ -124,7 +114,28 @@ $(function() {
                 document.querySelector('#span-' + cat.id).textContent = `The cat click ${cat.counter} times`;               
             });              
         }
-    };    
+    }; 
+    
+    var adminView = {
+        init: function() {
+            // grab elements and html for using in the render function
+            var adminBtn = $('.admin');
+            var addCatBtn = $('.add-cat');
+            var admin_span = $('.admin_span');   
+            var addCatContent = $('#add-cat-content');
+            var addCatImgContent = $('#add-catImg-content');
+            var addCatClicksContent = $('#add-catClicks-content');                     
+            adminBtn.click(function() {
+                admin_span.toggle();
+                return false;
+            }); 
+            addCatBtn.click(function() {
+                octopus.addCat(addCatContent.val(),addCatImgContent.val(),addCatClicksContent.val());
+                return false;
+            });                                  
+            admin_span.hide();
+        },        
+    };     
 
     octopus.init();
-}());
+}());    
